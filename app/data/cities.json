@@ -1,0 +1,22 @@
+[
+    {
+        "name": "London",
+        "value":"london"
+    },
+    {
+        "name":"Kiev",
+        "value":"kiev"
+    },
+    {
+        "name":"Lviv",
+        "value":"lviv"
+    },
+    {
+        "name":"Melwood",
+        "value":"melwood"
+    },
+    {
+        "name":"Paris",
+        "value":"paris"
+    }
+];

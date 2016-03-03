@@ -1,13 +1,13 @@
 (function() {
 	'use strict';
 
-	angular.module('app.demoComponent', [])
+	angular.module('app.demoComponent', ['ui.router'])
 		.directive('demoComponent', demoComponentFn);
 
 	function demoComponentFn() {
 		return {
-			restrict: 'EA',
+			restrict: 'A',
 			templateUrl: 'components/demoComponent/demoComponents.html'
-		}
+		};
 	}
 })();

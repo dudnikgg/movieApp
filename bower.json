@@ -18,6 +18,10 @@
   "dependencies": {
     "angular": "~1.4.8",
     "jquery": "~2.1.4",
-    "angular-ui-router": "~0.2.15"
+    "angular-ui-router": "^0.2.18",
+    "angular-formly": "^7.3.9",
+    "angular-material": "^1.0.5",
+    "angular-formly-material": "^0.14.1",
+    "angular-resource": "^1.5.0"
   }
 }
