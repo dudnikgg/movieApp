@@ -1,0 +1,32 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	font-weight: normal;
+	background-color: $body-bg--color;
+	font-size: 13px;
+	height: initial;
+}
+a {
+	text-decoration: none;
+	color: $theme-links--color;
+	&:hover {
+		color: $theme-hover--color;
+		text-decoration: none;
+	}
+	&:focus {
+		color: $theme-focus--color;
+		text-decoration: none;
+	}
+}
+img {
+	max-width: 100%;
+	height: auto;
+}
+ul, ol {
+	padding: 0;
+	margin: 0;
+
+	list-style-type: none;
+}

@@ -1,0 +1,24 @@
+<md-button class="md-raised md-primary" ui-sref="movieAdd">Add new movie</md-button>
+
+<md-content class="md-padding movies" layout-xs="column" layout="row">
+	    <md-card class="movies--item" data-ng-repeat="movie in movies">
+	            <a class="movies--item__link" ui-sref="movieView({id:movie._id})">
+				    <img class="movies--item__image" ng-src="{{movie.image}}" alt="{{movie.title}}" />
+                </a>
+            <md-card-title>
+        	   <md-card-title-text>
+            	   <h2 class="movies--item__title md-headline"> {{movie.title}} </h2>
+            	   <span class="md-subhead"> Genre: <i>{{movie.genre}}</i></span>
+            	   <span class="md-subhead"> Director: <i>{{movie.director}}</i></span>
+        	   </md-card-title-text>
+            </md-card-title>
+            <div class="divider"></div>
+            <md-card-content>
+               <p class="movies--text"> {{movie.description}} </p>
+            </md-card-content>
+            <md-card-actions layout="row" layout-align="end center">
+        	   <md-button class="md-raised md-primary button--edit" ui-sref="movieEdit({id:movie._id})">Edit</md-button>
+	    	  <md-button class="md-raised md-warn button--delete" ng-click="deleteMovie(movie)">Delete</md-button>
+            </md-card-actions>
+        </md-card>
+</md-content>

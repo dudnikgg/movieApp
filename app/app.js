@@ -1,9 +1,16 @@
 (function() {
 	'use strict';
 
-	 appConfig.$inject = ["$stateProvider", "$urlRouterProvider"];
-	angular.module('app', ['app.demoComponent', 'formly', 'formlyMaterial', 'ngResource', 'ui.router', 'ngMaterial'] )
-
+	 appConfig.$inject = ["$stateProvider", "$urlRouterProvider", "$mdThemingProvider"];
+	angular.module('app', 
+						[	'app.movieComponent',
+							'formly',
+							'formlyMaterial',
+							'ngResource',
+							'ui.router',
+							'ngMaterial',
+							'ngMessages'
+						])
 
 	.config(appConfig);
 
@@ -15,19 +22,17 @@
 
 	    $stateProvider
 	      .state('home', {
-	        url: '/',
+	        url: '/home',
 	        templateUrl: 'components/home.html'
 	      })
-	      .state('demoComponent', {
-	        url: '/demoComponent',
-	        templateUrl: 'components/demoComponent/demoComponents.html'
+	      .state('projects', {
+	        url: '/projects',
+	        templateUrl: 'components/projects.html'
 	      })
-	      
-	      
-	      // Configure a dark theme with primary foreground yellow
-	   //  $mdThemingProvider.theme('docs-dark', 'default')
-	   //  	.primaryPalette('indigo')
-    // 		.accentPalette('green');
-	  	};
-	  
+	
+	      	$mdThemingProvider.theme('default')
+			    .primaryPalette('indigo')
+			    .accentPalette('lime');
+		}
+
 })();

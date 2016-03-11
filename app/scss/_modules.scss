@@ -1,0 +1,56 @@
+.projects {
+	& a {
+		color: #000;
+	}
+}
+.movies {
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	&--item {
+		max-width: 400px;
+		&__link {
+			display: block;
+			overflow: hidden;
+		}
+		&__image {
+			transition: all .4s ease;
+			width: 270px;
+			height: auto;
+			margin: 0 auto;
+			display: block;
+			&:hover {
+				transform: scale(1.1);
+				cursor: pointer;	
+			}
+		}
+	}
+}
+.button {
+	&--delete {
+		margin-left: 10px!important;
+	}
+}
+md-card-title-text {
+	.md-subhead i {
+		width: 70%;
+		float: right;
+		font-style: normal;
+	}
+}
+.textarea {
+	min-height: 100px!important;
+	min-width: 400px;
+}
+.movieAdd-form {
+	text-align: center;
+}
+.submit-button {
+	display: inline-block;
+}
+.inputdemoErrors .inputErrorsApp {
+  min-height: 48px; }
+.inputdemoErrors md-input-container > p {
+  font-size: 0.8em;
+  text-align: left;
+  width: 100%; }

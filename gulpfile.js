@@ -2,8 +2,11 @@ var gulp = require('gulp');
 var plugins = require('gulp-load-plugins')();
 var del = require('del');
 var es = require('event-stream');
-var ngAnnotate = require('gulp-ng-annotate')
+// var sass = require('gulp-sass');
+var autoprefixer = require('gulp-autoprefixer');
+var ngAnnotate = require('gulp-ng-annotate');
 var bowerFiles = require('main-bower-files');
+var wiredep = require('wiredep').stream;
 var browserSync = require('browser-sync');
 // If you use jade in your project you must set variable 'useJade' equal 'TRUE'
 var useJade = false;
@@ -26,7 +29,7 @@ var log = function (error) {
    = = = */
 var paths = {
   scripts: 'app/**/*.js', //path for our js files
-  styles: ['./app/scss/**/*.css', './app/scss/**/*.scss'], //path for our *.css and *.scss
+  styles: './app/scss/**/*.scss', //path for our *.css and *.scss
   images: 'app/img/**/*', //path for our images
   index: 'app/index.html', //path for our index.html
   indexJade: 'app/index.jade', //path for our index.jade
@@ -86,18 +89,6 @@ pipes.builtAppScriptsDev = function() {
     .pipe(plugins.concat('app.js'))
     .pipe(gulp.dest(paths.distDev));
 };
-// Built Style scss file
-pipes.builtStylesDev = function() {
-    return gulp.src('./app/scss/**/*.scss')
-      .pipe(plugins.plumber({
-        errorHandler: function (error) {
-          console.log(error.message);
-          this.emit('end');
-        }}))
-      .pipe(plugins.sass('main.css'))
-    
-      .pipe(gulp.dest(paths.distDevCss));
-};
 // Built all others jade file or html files and then moves to DEV directory
 pipes.builtPartialsFilesDev = function() {
   if (useJade) {
@@ -118,6 +109,40 @@ pipes.processedImagesDev = function() {
   return gulp.src(paths.images)
       .pipe(gulp.dest(paths.distDevImg));
 };
+
+pipes.buildWiredepSass = function() {
+  return gulp.src('./app/scss/index.scss')
+  .pipe(wiredep({
+        directory: './bower_components/',
+        fileTypes: {
+          scss: {
+            replace: {
+              sass: '@import "{{filePath}}";',
+              scss: '@import "{{filePath}}";'
+            }
+          }
+        },
+      ignorePath: /^(\.\.\/)+/
+    }))
+  .pipe(gulp.dest('./app/scss/'));
+}
+// Built Style scss file
+pipes.builtStylesDev = function() {
+    return gulp.src(paths.styles)
+      .pipe(plugins.plumber({
+        errorHandler: function (error) {
+          console.log(error.message);
+          this.emit('end');
+        }}))
+      .pipe(plugins.sass('main.css'))
+    
+      .pipe(gulp.dest(paths.distDevCss));
+};
+// Font Awesome icons FIX and ALL fonts
+pipes.buildAllFonts = function() { 
+    return gulp.src(['./bower_components/font-awesome/fonts/**.*', 'bower_components/bootstrap-sass/assets/fonts/bootstrap/*', './app/fonts/**/**.*']) 
+        .pipe(gulp.dest(paths.distDev + '/fonts/')); 
+};
 // Built all project
 pipes.builtIndexDev = function() {
   var orderedVendorScripts = pipes.builtVendorScriptsDev()
@@ -133,7 +158,7 @@ pipes.builtIndexDev = function() {
 };
 // Run streaming Assembly
 pipes.builtAppDev = function() {
-  return es.merge(pipes.builtIndexDev(), pipes.builtPartialsFilesDev(), pipes.processedImagesDev());
+  return es.merge(pipes.buildWiredepSass(), pipes.builtIndexDev(), pipes.buildAllFonts(), pipes.builtPartialsFilesDev(), pipes.processedImagesDev());
 };
 /* = = =
  | PROD PIPE SEGMENT
@@ -176,12 +201,6 @@ pipes.builtVendorScriptsProd = function() {
 // Built style scss file
 pipes.builtStylesProd = function() {
   return gulp.src('./app/scss/**/*.scss')
-      .pipe(plugins.compass({
-        css: paths.distDevCss,
-        sass: './app/scss/',
-        image: './app/img/',
-        require: ['compass', 'singularitygs']
-      }))
       .pipe(plugins.cssUrlAdjuster({
         replace:  ['../../app/img','../img/']
       }))
@@ -226,6 +245,7 @@ gulp.task('clean-dev', function() {
 });
 // builds a complete prod environment
 gulp.task('build-app-dev', pipes.builtAppDev);
+gulp.task('build-style-dev', pipes.builtStylesDev);
 // cleans and builds a complete dev environment
 gulp.task('clean-build-app-dev', ['clean-dev'], pipes.builtAppDev);
 // clean, build, and watch live changes to the dev environment

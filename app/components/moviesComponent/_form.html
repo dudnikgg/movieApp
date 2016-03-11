@@ -1,0 +1,27 @@
+<div layout="column" ng-cloak class="md-inline-form" >
+  <md-content layout-padding>
+    <form class="movieAdd-form">
+      <md-input-container class="md-block">
+        <label>Title</label>
+        <input ng-model="movie.title">
+      </md-input-container>
+      <md-input-container class="md-block">
+        <label>Genre</label>
+        <input ng-model="movie.genre">
+      </md-input-container>
+      <md-input-container class="md-block">
+        <label>Director</label>
+        <input ng-model="movie.director"/>
+      </md-input-container>
+      <md-input-container class="md-block">
+        <label>Movie Image (url)</label>
+        <input type="url" ng-model="movie.image" />
+      </md-input-container>
+      <md-input-container class="md-block">
+        <label>Description</label>
+        <textarea ng-model="movie.description" class="textarea" md-select-on-focus></textarea>
+      </md-input-container>
+      <input type="submit" class="md-raised md-primary md-button submit-button" value="Save movie">
+    </form>
+  </md-content>
+</div>

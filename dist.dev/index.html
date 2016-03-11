@@ -7,12 +7,20 @@
 	<link rel="stylesheet" href="bower_components/angular-material.css">
 	<!-- endinject -->
 	<!-- inject:css -->
-	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/index.css">
 	<!-- endinject -->
 </head>
 <body>
-	<h1>Angular + Gulp</h1>
-	<div ui-view></div>
+	
+	<nav id="l-nav" class="nav">
+		<a ui-sref="home"><md-button class="md-raised md-primary nav--item">Home</md-button></a>
+		<a ui-sref="projects"><md-button class="md-raised md-primary nav--item">Projects</md-button></a>
+		<a ui-sref="docs"><md-button class="md-raised md-primary nav--item">Docs</md-button></a>
+	</nav>
+	
+	<div class="container">
+		<div ui-view></div>
+	</div>
 	<!-- bower:js -->
 	<script src="bower_components/jquery.js"></script>
 	<script src="bower_components/angular.js"></script>

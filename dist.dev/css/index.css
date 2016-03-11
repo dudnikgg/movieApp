@@ -1,0 +1,88 @@
+* {
+  margin: 0;
+  padding: 0; }
+
+body {
+  font-weight: normal;
+  background-color: #f0f0f0;
+  font-size: 13px;
+  height: initial; }
+
+a {
+  text-decoration: none;
+  color: #fff; }
+  a:hover {
+    color: #fff;
+    text-decoration: none; }
+  a:focus {
+    color: #EEFF41;
+    text-decoration: none; }
+
+img {
+  max-width: 100%;
+  height: auto; }
+
+ul, ol {
+  padding: 0;
+  margin: 0;
+  list-style-type: none; }
+
+#l-nav {
+  display: flex;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  justify-content: center; }
+
+.container {
+  max-width: 80%;
+  display: flex;
+  margin: auto;
+  justify-content: center; }
+
+.projects a {
+  color: #000; }
+
+.movies {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap; }
+  .movies--item {
+    max-width: 400px; }
+    .movies--item__link {
+      display: block;
+      overflow: hidden; }
+    .movies--item__image {
+      transition: all .4s ease;
+      width: 270px;
+      height: auto;
+      margin: 0 auto;
+      display: block; }
+      .movies--item__image:hover {
+        transform: scale(1.1);
+        cursor: pointer; }
+
+.button--delete {
+  margin-left: 10px !important; }
+
+md-card-title-text .md-subhead i {
+  width: 70%;
+  float: right;
+  font-style: normal; }
+
+.textarea {
+  min-height: 100px !important;
+  min-width: 400px; }
+
+.movieAdd-form {
+  text-align: center; }
+
+.submit-button {
+  display: inline-block; }
+
+.inputdemoErrors .inputErrorsApp {
+  min-height: 48px; }
+
+.inputdemoErrors md-input-container > p {
+  font-size: 0.8em;
+  text-align: left;
+  width: 100%; }
